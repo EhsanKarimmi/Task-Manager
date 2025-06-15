@@ -12,62 +12,65 @@ import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
 import DeleteConfirmModal from "./components/DeleteTaskModal/DeleteTaskModal";
 import Toast from "./components/Toast/Toast";
 import "./styles/home.scss";
+import AddTaskModal from "./components/AddTaskModal/AddTaskModal";
 
 const PAGE_SIZE = 30;
 
 function App() {
+  // dispatch
   const dispatch = useAppDispatch();
+  // task selector
   const { tasks, loading, error } = useAppSelector((state) => state.tasks);
-
+  //
   const [page, setPage] = useState(1);
   const [editTaskId, setEditTaskId] = useState<string | null>(null);
   const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-
+  //
   const displayedTasks = useMemo(() => {
     return tasks.slice(0, page * PAGE_SIZE);
   }, [tasks, page]);
-
+  //
   const currentEditTask = useMemo(() => {
     return tasks.find((t) => t.id === editTaskId) || null;
   }, [tasks, editTaskId]);
-
+  //
   function handleEditSave(data: { title: string; description: string }) {
     if (!editTaskId) return;
     dispatch(updateTask({ id: editTaskId, ...data }));
     setEditTaskId(null);
-    setToastMessage("تسک با موفقیت ویرایش شد.");
+    setToastMessage("The task was successfully edited. !");
   }
-
+  //
   function handleDeleteConfirm() {
     if (!deleteTaskId) return;
     dispatch(deleteTask(deleteTaskId));
     setDeleteTaskId(null);
-    setToastMessage("تسک با موفقیت حذف شد.");
+    setToastMessage("The task was successfully deleted !");
   }
-
+  //
   function handleCreateTask(data: { title: string; description: string }) {
     dispatch(createTask(data));
     setShowAddModal(false);
-    setToastMessage("تسک جدید با موفقیت ایجاد شد.");
+    setToastMessage("The new task was created successfully !");
   }
+  // useEffect
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
 
   return (
     <div className="container">
-      <h1>مدیریت تسک‌ها</h1>
+      <div className="header">
+        <h1>Task Manager</h1>
+        <button className="add-btn" onClick={() => setShowAddModal(true)}>
+          Add New Task
+        </button>
+      </div>
 
       {loading && <Loader />}
       {error && <div className="error">{error}</div>}
-
-      <button className="add-btn" onClick={() => setShowAddModal(true)}>
-        + افزودن تسک جدید
-      </button>
-
       <div className="tasks-list" role="list">
         {displayedTasks.map((task) => (
           <TaskCard
@@ -85,13 +88,13 @@ function App() {
         <button
           className="load-more-btn"
           onClick={() => setPage(page + 1)}
-          aria-label="بارگذاری بیشتر تسک‌ها"
+          aria-label="Load more tasks"
         >
-          بارگذاری بیشتر
+          Load more
         </button>
       )}
 
-      {/* مدال ویرایش */}
+      {/* edit task modal */}
       {currentEditTask && (
         <EditTaskModal
           isOpen={Boolean(editTaskId)}
@@ -102,7 +105,7 @@ function App() {
         />
       )}
 
-      {/* مدال حذف */}
+      {/* delete task modal */}
       {deleteTaskId && (
         <DeleteConfirmModal
           isOpen={Boolean(deleteTaskId)}
@@ -112,9 +115,9 @@ function App() {
         />
       )}
 
-      {/* مدال افزودن تسک جدید */}
+      {/* add task modal */}
       {showAddModal && (
-        <EditTaskModal
+        <AddTaskModal
           isOpen={showAddModal}
           onClose={() => setShowAddModal(false)}
           title=""
@@ -123,7 +126,7 @@ function App() {
         />
       )}
 
-      {/* نوتیفیکیشن */}
+      {/* toast for notifications */}
       {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
       )}

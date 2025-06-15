@@ -2,7 +2,7 @@ import "../../styles/loader.scss";
 
 const Loader = () => (
   <div className="loader" role="status" aria-live="polite">
-    در حال بارگذاری...
+    Loading...
   </div>
 );
 

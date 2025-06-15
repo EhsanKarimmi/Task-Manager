@@ -6,9 +6,30 @@
   color: white;
   padding: 12px 20px;
   border-radius: 6px;
-  box-shadow: 0 0 8px #000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
   z-index: 10000;
   font-weight: 600;
   user-select: none;
-  opacity: 0.9;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 0.4s ease-out forwards,
+    fadeSlideOut 0.4s ease-in forwards 2.6s;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
