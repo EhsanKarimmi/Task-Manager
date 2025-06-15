@@ -1,0 +1,31 @@
+.task-card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  box-shadow: 0 0 3px #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  outline-offset: 3px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    color: #555;
+  }
+
+  button {
+    background-color: #1976d2;
+  }
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import TaskForm from "./TaskForm";
+import TaskForm from "../TaskForm/TaskForm";
+import "../../styles/modal.scss";
 
 interface EditTaskModalProps {
   isOpen: boolean;

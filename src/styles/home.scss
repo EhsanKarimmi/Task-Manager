@@ -1,0 +1,17 @@
+.add-btn {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.tasks-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.load-more-btn {
+  margin: 20px auto 0 auto;
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+}

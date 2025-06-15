@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/modal.scss";
 
 interface DeleteConfirmModalProps {
   isOpen: boolean;

@@ -1,4 +1,4 @@
-import "../styles/Loader.scss";
+import "../../styles/loader.scss";
 
 const Loader = () => (
   <div className="loader" role="status" aria-live="polite">
