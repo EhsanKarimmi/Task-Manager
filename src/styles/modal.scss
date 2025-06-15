@@ -17,10 +17,18 @@
   border-radius: 8px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 0 10px #444;
+  box-shadow: 0 0 4px #444;
 }
 
 .modal-content h2 {
   margin-top: 0;
   margin-bottom: 12px;
+}
+
+.modal-content p {
+  margin: 20px 0;
+}
+
+button {
+  font-size: 14px;
 }

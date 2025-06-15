@@ -24,19 +24,19 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
       aria-labelledby="delete-dialog-title"
     >
       <div className="modal-content">
-        <h2 id="delete-dialog-title">حذف تسک</h2>
-        <p>آیا از حذف تسک "{taskTitle}" مطمئن هستید؟</p>
+        <h2 id="delete-dialog-title">Delete Task</h2>
+        <p>Are you sure you want to delete task "{taskTitle}" ?</p>
         <div
           style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }}
         >
           <button onClick={onClose} style={{ marginRight: 8 }}>
-            لغو
+            Cancel{" "}
           </button>
           <button
             onClick={onConfirm}
             style={{ backgroundColor: "#e57373", color: "white" }}
           >
-            حذف
+            Delete
           </button>
         </div>
       </div>
