@@ -22,7 +22,7 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-content">
-        <h2>ویرایش تسک</h2>
+        <h2>Edit Task</h2>
         <TaskForm
           initialTitle={title}
           initialDescription={description}

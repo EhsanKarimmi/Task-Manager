@@ -1,7 +1,8 @@
 .task-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  margin-top: 30px;
 
   input,
   textarea {
@@ -16,6 +17,11 @@
   textarea:focus {
     outline: none;
     border-color: #1976d2;
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
   }
 
   .error {

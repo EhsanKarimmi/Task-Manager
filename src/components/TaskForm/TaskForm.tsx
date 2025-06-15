@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import "../../styles/taskForm.scss";
 
 interface TaskFormProps {
   initialTitle?: string;
@@ -21,8 +22,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
       description: initialDescription,
     },
     validationSchema: Yup.object({
-      title: Yup.string().required("عنوان الزامی است"),
-      description: Yup.string().required("توضیحات الزامی است"),
+      title: Yup.string().required("Title is required"),
+      description: Yup.string().required("Description is required"),
     }),
     onSubmit: (values) => {
       onSubmit(values);
@@ -35,7 +36,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         id="title"
         name="title"
         type="text"
-        placeholder="عنوان"
+        placeholder="Title"
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.title}
@@ -50,7 +51,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       <textarea
         id="description"
         name="description"
-        placeholder="توضیحات"
+        placeholder="Description"
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.description}
@@ -64,17 +65,23 @@ const TaskForm: React.FC<TaskFormProps> = ({
           {formik.errors.description}
         </div>
       ) : null}
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: "20px",
+        }}
+      >
         {onCancel && (
           <button
             type="button"
             onClick={onCancel}
-            style={{ marginRight: 8, background: "#eee", color: "#333" }}
+            style={{ marginRight: 10, background: "#eee", color: "#333" }}
           >
-            لغو
+            Cancel
           </button>
         )}
-        <button type="submit">ذخیره</button>
+        <button type="submit">Add</button>
       </div>
     </form>
   );
