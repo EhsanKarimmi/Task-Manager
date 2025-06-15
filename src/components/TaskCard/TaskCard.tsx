@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import "../../styles/taskCard.scss";
 
 interface TaskCardProps {
   title: string;
@@ -15,21 +16,28 @@ const TaskCard: React.FC<TaskCardProps> = ({
   onEdit,
   onDelete,
 }) => {
+  //
+  const [imageError, setImageError] = useState(false);
+  //
   return (
     <div className="task-card" tabIndex={0} aria-label={`Task: ${title}`}>
-      {image && <img src={image} alt={`تصویر ${title}`} />}
+      {imageError ? (
+        <p className="image-placeholder">Image could not be loaded !</p>
+      ) : (
+        <img src={image} alt={title} onError={() => setImageError(true)} />
+      )}
       <h3>{title}</h3>
       <p>{description}</p>
       <div>
-        <button onClick={onEdit} aria-label="ویرایش تسک">
-          ویرایش
+        <button onClick={onEdit} aria-label="Edit task">
+          Edit
         </button>
         <button
           onClick={onDelete}
-          aria-label="حذف تسک"
-          style={{ marginLeft: 8 }}
+          aria-label="Delete task"
+          style={{ marginLeft: 10 }}
         >
-          حذف
+          Delete
         </button>
       </div>
     </div>
